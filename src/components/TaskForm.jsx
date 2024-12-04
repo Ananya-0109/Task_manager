@@ -52,7 +52,7 @@ const TaskForm = ({ existingTask, closeForm }) => {
         onChange={handleChange}
         placeholder="Task Title"
         required
-        className="w-full p-3 border border-gray-300 rounded-lg"
+        className="w-full p-3 border text-black border-gray-300 rounded-lg"
       />
       
       {/* Description */}
