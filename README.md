@@ -11,9 +11,9 @@ Currently, two official plugins are available:
 
 
 For execution :-
-git clone https://github.com/Ananya-0109/Task_manager.git
+->git clone https://github.com/Ananya-0109/Task_manager.git
 
 Build Steps:-
-cd Task_manager
-npm i
-npm run dev
+-> cd Task_manager
+-> npm i
+-> npm run dev
