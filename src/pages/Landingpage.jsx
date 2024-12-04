@@ -2,41 +2,42 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const Sidebar = ({ isOpen, toggleSidebar }) => (
-  <div
-    className={`fixed inset-y-0 left-0 bg-gray-800 text-gray-300 w-48 lg:w-64 transform ${
-      isOpen ? "translate-x-0" : "-translate-x-full"
-    } transition-transform duration-300 lg:translate-x-0 z-20`}
-  >
-    <div className="p-4 z-30">
-      <h2 className="text-xl font-bold mb-4">TaskPro</h2>
-      <ul className="space-y-3">
-        <li className="hover:bg-indigo-700">
-          <a href="/dashboard" className="flex items-center space-x-2">
-            <span>🏠</span>
-            <span>Dashboards</span>
-          </a>
-        </li>
-        <li className="hover:bg-indigo-700">
-          <a href="#" className="flex items-center space-x-2">
-            <span>📊</span>
-            <span>Analytics</span>
-          </a>
-        </li>
-        <li className="hover:bg-indigo-700">
-          <a href="#" className="flex items-center space-x-2">
-            <span>🛒</span>
-            <span>eCommerce</span>
-          </a>
-        </li>
-        <li className="hover:bg-indigo-700">
-          <a href="#" className="flex items-center space-x-2">
-            <span>📦</span>
-            <span>Logistics</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <></>
+  // <div
+  //   className={`fixed inset-y-0 left-0 bg-gray-800 text-gray-300 w-48 lg:w-64 transform ${
+  //     isOpen ? "translate-x-0" : "-translate-x-full"
+  //   } transition-transform duration-300 lg:translate-x-0 z-20`}
+  // >
+  //   <div className="p-4 z-30">
+  //     <h2 className="text-xl font-bold mb-4">TaskPro</h2>
+  //     <ul className="space-y-3">
+  //       <li className="hover:bg-indigo-700">
+  //         <a href="/dashboard" className="flex items-center space-x-2">
+  //           <span>🏠</span>
+  //           <span>Dashboards</span>
+  //         </a>
+  //       </li>
+  //       <li className="hover:bg-indigo-700">
+  //         <a href="#" className="flex items-center space-x-2">
+  //           <span>📊</span>
+  //           <span>Analytics</span>
+  //         </a>
+  //       </li>
+  //       <li className="hover:bg-indigo-700">
+  //         <a href="#" className="flex items-center space-x-2">
+  //           <span>🛒</span>
+  //           <span>eCommerce</span>
+  //         </a>
+  //       </li>
+  //       <li className="hover:bg-indigo-700">
+  //         <a href="#" className="flex items-center space-x-2">
+  //           <span>📦</span>
+  //           <span>Logistics</span>
+  //         </a>
+  //       </li>
+  //     </ul>
+  //   </div>
+  // </div>
 );
 
 const Navbar = ({ toggleSidebar }) => (
@@ -51,13 +52,13 @@ const Navbar = ({ toggleSidebar }) => (
       <h1 className="text-xl font-bold">TaskPro</h1>
       <ul className="hidden lg:flex space-x-6">
         <li>
-          <a href="#features" className="hover:text-indigo-400 transition">
-            Features
+          <a href="/dashboard" className="hover:text-indigo-400 transition">
+            Dashboard
           </a>
         </li>
         <li>
-          <a href="#how-it-works" className="hover:text-indigo-400 transition">
-            How It Works
+          <a href="/task" className="hover:text-indigo-400 transition">
+            Task Details
           </a>
         </li>
         <li>
