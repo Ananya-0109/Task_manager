@@ -2,7 +2,7 @@ import React from "react";
 
 const FilterBar = ({ setFilter }) => {
   return (
-    <div className="flex gap-4 mb-6">
+    <div className="flex flex-wrap gap-4 mb-6 justify-center">
       {["all", "completed", "pending", "overdue"].map((filter) => (
         <button
           key={filter}

@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, toggleComplete } from "../redux/taskSlice";
 import TaskForm from "./TaskForm";
-import ConfirmationModal from "./ConfirmationModal"; // Import the modal
+import ConfirmationModal from "./ConfirmationModal";
 
 const TaskList = ({ filter }) => {
-  const tasks = useSelector((state) => state.tasks.tasks); // Access tasks from Redux state
-  const [editingTask, setEditingTask] = useState(null); // Keep track of the task being edited
-  const [showConfirmModal, setShowConfirmModal] = useState(false); // State to show/hide the confirmation modal
-  const [taskToDelete, setTaskToDelete] = useState(null); // Keep track of the task to be deleted
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const [editingTask, setEditingTask] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState(null);
   const dispatch = useDispatch();
 
-  // Filter tasks based on the selected filter type (all, completed, pending, overdue)
   const filteredTasks = tasks.filter((task) => {
     if (filter === "all") return true;
     if (filter === "completed") return task.completed;
@@ -20,38 +19,32 @@ const TaskList = ({ filter }) => {
     return true;
   });
 
-  // Handle task deletion with confirmation
   const handleDelete = (task) => {
-    setTaskToDelete(task); // Set the task to be deleted
-    setShowConfirmModal(true); // Show the confirmation modal
+    setTaskToDelete(task);
+    setShowConfirmModal(true);
   };
 
-  // Confirm the deletion
   const confirmDelete = () => {
     if (taskToDelete) {
       dispatch(deleteTask(taskToDelete.id));
     }
-    setShowConfirmModal(false); // Close the modal after confirming
+    setShowConfirmModal(false);
   };
 
-  // Cancel the deletion
   const cancelDelete = () => {
-    setShowConfirmModal(false); // Just close the modal if canceled
+    setShowConfirmModal(false);
   };
 
-  // Handle toggle of task completion status (mark as completed or pending)
   const handleToggleComplete = (id) => {
     dispatch(toggleComplete(id));
   };
 
-  // Handle editing task
   const handleEdit = (task) => {
-    setEditingTask(task); // Set the task being edited
+    setEditingTask(task);
   };
 
-  // Close the edit form
   const closeForm = () => {
-    setEditingTask(null); // Close the form
+    setEditingTask(null);
   };
 
   return (
@@ -68,47 +61,43 @@ const TaskList = ({ filter }) => {
             <p className="text-sm text-gray-400">
               Due Date: {new Date(task.dueDate).toLocaleDateString()}
             </p>
-            <div className="mt-4 flex gap-3">
+            <div className="flex justify-between items-center mt-4">
               <button
                 onClick={() => handleToggleComplete(task.id)}
-                className={`${
+                className={`px-4 py-2 rounded-lg ${
                   task.completed
-                    ? "bg-red-500 hover:bg-red-600"
-                    : "bg-green-500 hover:bg-green-600"
-                } text-white px-4 py-2 rounded`}
+                    ? "bg-green-600 hover:bg-green-700"
+                    : "bg-red-600 hover:bg-red-700"
+                }`}
               >
-                {task.completed ? "Mark as Pending" : "Mark as Completed"}
+                {task.completed ? "Completed" : "Mark as Complete"}
               </button>
-              <button
-                onClick={() => handleEdit(task)}
-                className="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-600"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(task)} // Show the confirmation modal when delete is clicked
-                className="bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
+              <div className="flex gap-4">
+                <button
+                  onClick={() => handleEdit(task)}
+                  className="text-blue-500 hover:text-blue-600"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(task)}
+                  className="text-red-500 hover:text-red-600"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))
       ) : (
-        <p className="text-gray-600">No tasks available for this filter.</p>
+        <p className="text-white">No tasks available</p>
       )}
-
-      {/* Show TaskForm when editing a task */}
       {editingTask && (
-        <div className="mt-6 p-6 bg-gray-800 rounded-lg shadow-lg">
-          <TaskForm existingTask={editingTask} closeForm={closeForm} />
-        </div>
+        <TaskForm existingTask={editingTask} closeForm={closeForm} />
       )}
-
-      {/* Show Confirmation Modal for Delete */}
       {showConfirmModal && (
         <ConfirmationModal
-          message="Delete this task?"
+          message="Are you sure you want to delete this task?"
           onConfirm={confirmDelete}
           onCancel={cancelDelete}
         />
